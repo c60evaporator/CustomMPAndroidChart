@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RadioGroup
+        android:id="@+id/radioGroupMultiple"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lineChartExample">
+        <RadioButton android:text="Single"
+            android:id="@+id/radioButtonSingle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+        </RadioButton>
+        <RadioButton android:text="TimeSeries"
+            android:id="@+id/radioButtonTimeSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </RadioButton>
+        <RadioButton android:text="Multiple"
+            android:id="@+id/radioButtonMultiple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </RadioButton>
+        <RadioButton android:text="Stack"
+            android:id="@+id/radioButtonStack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </RadioButton>
+        <RadioButton android:text="Real"
+            android:id="@+id/radioButtonReal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </RadioButton>
+    </RadioGroup>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChartExample"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupMultiple"
+        app:layout_constraintBottom_toTopOf="@+id/barChartExample" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChartExample"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineChartExample"
+        app:layout_constraintBottom_toTopOf="@+id/candleStickChartExample" />
+
+    <com.github.mikephil.charting.charts.CandleStickChart
+        android:id="@+id/candleStickChartExample"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barChartExample"
+        app:layout_constraintBottom_toTopOf="@+id/pieChartExample1" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChartExample1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pieChartExample2"
+        app:layout_constraintTop_toBottomOf="@+id/candleStickChartExample"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChartExample2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@+id/pieChartExample1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/candleStickChartExample"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
