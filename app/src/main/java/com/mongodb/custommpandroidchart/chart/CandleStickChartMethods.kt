@@ -107,17 +107,16 @@ fun setupCandleStickChart(
     //背景輝度が0.5以下なら文字色を白に
     val luminance = candleChartFormat.invertTextColor()
     candleDataSetFormat.invertTextColor(luminance)
-    //xAxisDateFormatとtoolTipFormat.secondの日付指定有無が一致していないとき、例外を投げる
-    if((candleChartFormat.xAxisDateFormat == null && candleChartFormat.toolTipDateFormat != null)
-        || (candleChartFormat.xAxisDateFormat != null && candleChartFormat.toolTipDateFormat == null))
-    {
-        throw IllegalArgumentException("xAxisDateFormatとtoolTipFormat.secondのどちらかのみにnullを指定することはできません")
-    }
-    //xがdate型だがxAxisDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
+
+    //xがdate型だがxAxisDateFormatあるいはtoolTipDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
     val dataType = candleEntries.firstOrNull()?.data?.javaClass
-    if(dataType?.name == "java.util.Date" && candleChartFormat.xAxisDateFormat == null){
-        candleChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
-        candleChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+    if(dataType?.name == "java.util.Date") {
+        if(candleChartFormat.xAxisDateFormat == null) {
+            candleChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
+        }
+        if(candleChartFormat.toolTipDateFormat == null) {
+            candleChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+        }
     }
 
     //②CandleDataSetを作成

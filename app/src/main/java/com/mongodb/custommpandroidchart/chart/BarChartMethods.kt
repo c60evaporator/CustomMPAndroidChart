@@ -141,17 +141,16 @@ fun setupBarChart(
     //背景輝度が0.5以下なら文字色を白に
     val luminance = barChartFormat.invertTextColor()
     barDataSetFormats.values.map { it.invertTextColor(luminance) }
-    //xAxisDateFormatとtoolTipFormat.secondの日付指定有無が一致していないとき、例外を投げる
-    if((barChartFormat.xAxisDateFormat == null && barChartFormat.toolTipDateFormat != null)
-        || (barChartFormat.xAxisDateFormat != null && barChartFormat.toolTipDateFormat == null))
-    {
-        throw IllegalArgumentException("xAxisDateFormatとtoolTipFormat.secondのどちらかのみにnullを指定することはできません")
-    }
-    //xがdate型だがxAxisDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
+
+    //xがdate型だがxAxisDateFormatあるいはtoolTipDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
     val dataType = allBarsEntries[allBarsEntries.keys.first()]?.firstOrNull()?.data?.javaClass
-    if(dataType?.name == "java.util.Date" && barChartFormat.xAxisDateFormat == null){
-        barChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
-        barChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+    if(dataType?.name == "java.util.Date") {
+        if(barChartFormat.xAxisDateFormat == null) {
+            barChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
+        }
+        if(barChartFormat.toolTipDateFormat == null) {
+            barChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+        }
     }
 
     //「単一棒グラフ」「複数棒グラフ」「積み上げ棒グラフ」をデータ形式から判別

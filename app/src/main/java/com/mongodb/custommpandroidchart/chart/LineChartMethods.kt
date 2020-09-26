@@ -113,17 +113,16 @@ fun setupLineChart(
     //背景輝度が0.5以下なら文字色を白に
     val luminance = lineChartFormat.invertTextColor()
     lineDataSetFormats.values.map { it.invertTextColor(luminance) }
-    //xAxisDateFormatとtoolTipFormat.secondの日付指定有無が一致していないとき、例外を投げる
-    if((lineChartFormat.xAxisDateFormat == null && lineChartFormat.toolTipDateFormat != null)
-        || (lineChartFormat.xAxisDateFormat != null && lineChartFormat.toolTipDateFormat == null))
-    {
-        throw IllegalArgumentException("xAxisDateFormatとtoolTipFormat.secondのどちらかのみにnullを指定することはできません")
-    }
-    //xがdate型だがxAxisDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
+
+    //xがdate型だがxAxisDateFormatあるいはtoolTipDateFormatがnullのとき、xAxisDateFormatおよびtoolTipDateFormatに仮フォーマット入力
     val dataType = allLinesEntries[allLinesEntries.keys.first()]?.firstOrNull()?.data?.javaClass
-    if(dataType?.name == "java.util.Date" && lineChartFormat.xAxisDateFormat == null){
-        lineChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
-        lineChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+    if(dataType?.name == "java.util.Date") {
+        if(lineChartFormat.xAxisDateFormat == null) {
+            lineChartFormat.xAxisDateFormat = SimpleDateFormat("M/d H:mm")
+        }
+        if(lineChartFormat.toolTipDateFormat == null) {
+            lineChartFormat.toolTipDateFormat = SimpleDateFormat("M/d H:mm")
+        }
     }
 
     //複数線グラフかつ色が同じ線が存在するとき、UNIVERSAL_COLORS_ACCENTから色を自動抽出
