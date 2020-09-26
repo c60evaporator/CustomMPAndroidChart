@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         //①Entryにデータ格納(カテゴリ名のMap)
         val allLinesEntries: MutableMap<String, MutableList<Entry>> = mutableMapOf(
-            "linear" to makeDateLineChartData(x, y, timeaccuracy)
+            "linear" to makeDateLineChartData(x, y, lineChartFormat.timeAccuracy)
         )
 
         //②～⑦グラフの作成
