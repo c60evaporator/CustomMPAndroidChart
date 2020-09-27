@@ -282,7 +282,7 @@ class BarChartFormat(
     toolTipDirection: String? = null,
     toolTipDateFormat: SimpleDateFormat? = null,
     toolTipUnitX: String = "",
-    toolTipUnitY: String = "",
+    toolTipUnitY: String = ""
 ): XYChartFormat(legendFormat, legentTextColor, legendTextSize,
     description, descriptionTextColor, descriptionTextSize, descriptionXOffset, descriptionYOffset,
     bgColor, touch,
@@ -352,7 +352,7 @@ class CandleDataSetFormat(
     var decreasingColor: Int = UNIVERSAL_GREEN,//Open>Close時の太線部分の色、箱ひげとして使用するときはこちらを使用
     var decreasingPaint: Paint.Style? = Paint.Style.FILL,//Open>Close時の太線部分の塗りつぶし形式(nullならデフォルト)
     var increasingColor: Int? = UNIVERSAL_RED,//Open<Close時の太線部分の色(nullなら非表示)
-    var increasingPaint: Paint.Style? = Paint.Style.FILL,//Open<Close時の太線部分の色(nullならデフォルト)
+    var increasingPaint: Paint.Style? = Paint.Style.FILL//Open<Close時の太線部分の色(nullならデフォルト)
 ): DataSetFormat(drawValue, valueTextColor, valueTextSize, valueTextFormatter, axisDependency)
 
 /**
